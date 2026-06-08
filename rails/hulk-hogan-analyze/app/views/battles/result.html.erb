@@ -1,0 +1,29 @@
+<div class="w-full max-w-2xl">
+  <h1 class="text-3xl font-bold mb-8 text-center">Battle Results</h1>
+
+  <div class="grid grid-cols-2 gap-8">
+    <!-- Player 1 -->
+    <div class="text-center">
+      <h2 class="text-xl font-bold mb-4">Player 1</h2>
+      <div class="<%= @submission_1.similarity_score > (@submission_2&.similarity_score || 0) ? 'bg-yellow-100 border-4 border-yellow-400' : 'bg-gray-50' %> p-6 rounded">
+        <p class="text-5xl font-bold <%= @submission_1.similarity_score > (@submission_2&.similarity_score || 0) ? 'text-yellow-600' : 'text-gray-600' %>">
+          <%= number_to_percentage(@submission_1.similarity_score * 100, precision: 0) %>
+        </p>
+      </div>
+    </div>
+
+    <!-- Player 2 -->
+    <div class="text-center">
+      <h2 class="text-xl font-bold mb-4">Player 2</h2>
+      <div class="<%= @submission_2 && @submission_2.similarity_score > @submission_1.similarity_score ? 'bg-yellow-100 border-4 border-yellow-400' : 'bg-gray-50' %> p-6 rounded">
+        <p class="text-5xl font-bold <%= @submission_2 && @submission_2.similarity_score > @submission_1.similarity_score ? 'text-yellow-600' : 'text-gray-600' %>">
+          <%= @submission_2 ? number_to_percentage(@submission_2.similarity_score * 100, precision: 0) : "—" %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-8 text-center">
+    <%= link_to "New Battle", new_battle_path, class: "bg-blue-600 text-white font-bold py-2 px-6 rounded hover:bg-blue-700" %>
+  </div>
+</div>

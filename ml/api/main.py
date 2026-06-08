@@ -6,7 +6,6 @@ from router import router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # startup: load model, db connection, etc.
     print("starting up")
     yield
     # shutdown: cleanup
