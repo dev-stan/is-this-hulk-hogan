@@ -1,0 +1,15 @@
+<div class="w-full max-w-md text-center">
+  <h1 class="text-3xl font-bold mb-6">Waiting for your opponent...</h1>
+
+  <div class="bg-gray-100 p-6 rounded mb-6">
+    <p class="text-sm text-gray-600 mb-2">Share this link:</p>
+    <p class="text-lg font-mono font-bold break-all"><%= @battle.share_token %></p>
+  </div>
+
+  <p class="text-gray-600 mb-4">Your score:</p>
+  <p class="text-4xl font-bold text-green-600"><%= number_to_percentage(@submission.similarity_score * 100, precision: 0) %></p>
+
+  <div class="mt-8">
+    <%= link_to "← Back", new_battle_path, class: "text-blue-600 hover:underline" %>
+  </div>
+</div>
