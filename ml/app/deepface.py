@@ -33,7 +33,6 @@ def compare_faces(user_path: str, char_path: str) -> dict:
 
         return {
             "distance": round(distance, 4),
-            "model": result.get("model_name", "VGG-Face"),
         }
 
     except Exception:
@@ -92,10 +91,24 @@ def compare_emotions(user_path: str, char_path: str) -> dict:
         )
         raise
     
-def main(user_path ,char_path):
     
-    emotions = compare_emotions(user_path ,char_path):
-    
+def main(user_path: str, char_path: str) -> dict:
+    """
+    Compare a user's face to a character's face on both identity
+    and emotional expression.
+
+    Returns a combined, clean result dict.
+    """
+    face_result = compare_faces(user_path, char_path)
+    emotion_result = compare_emotions(user_path, char_path)
+
     return {
-        
+        "face": {
+            "distance": face_result["distance"],
+        },
+        "emotion": {
+            "similarity_percent": emotion_result["similarity_percent"],
+            "user_emotions": emotion_result["user_emotions"],
+            "char_emotions": emotion_result["char_emotions"],
+        },
     }
